@@ -21,8 +21,9 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [MembresController::class, 'form_login']);
-Route::post('/login/traitement', [MembresController::class, 'login_traitement']);
+
 Route::get('/register', [MembresController::class, 'form_register']);
+Route::post('/register/traitement', [MembresController::class, 'register_traitement']);
 
 Route::get('/colonne/add', [ColonneController::class, 'form_colonne']);
 Route::post('/colonne/add/traitement', [ColonneController::class, 'traitement_colonne']);

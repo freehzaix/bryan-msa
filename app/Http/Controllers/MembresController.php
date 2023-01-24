@@ -15,7 +15,16 @@ class MembresController extends Controller
         return view('login');
     }
 
-    public function login_traitement(Request $request)
+
+
+    public function form_register()
+    {
+        $colonnes = Colonne::all();
+        $departements = Departement::all();
+        return view('register', compact('departements', 'colonnes'));
+    }
+
+    public function register_traitement(Request $request)
     {
         $request->validate([
             'nom' => 'required',
@@ -56,13 +65,6 @@ class MembresController extends Controller
 
         return redirect('/register')->with('status', 'Votre inscription a bien été enregistré avec success.');
 
-    }
-
-    public function form_register()
-    {
-        $colonnes = Colonne::all();
-        $departements = Departement::all();
-        return view('register', compact('departements', 'colonnes'));
     }
 
 }

@@ -20,14 +20,14 @@
                 </div>
 
         <!-- Form -->
-        
+
         @if (session('status'))
             <div class="alert alert-succes">
                 {{ session('status') }}
             </div>
         @endif
 
-        <form action="/login/traitement" method="POST" enctype="multipart/form-data" class="signup-form">
+        <form action="/register/traitement" method="POST" enctype="multipart/form-data" class="signup-form">
             @csrf
             <div class="row">
                 <div class="col mb-3 form-group">
