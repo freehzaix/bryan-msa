@@ -6,16 +6,57 @@ use Illuminate\Http\Request;
 use App\Models\Colonne;
 use App\Models\Departement;
 use App\Models\Membre;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class MembresController extends Controller
 {
+    public function espace_membre(Request $request)
+    {
+        if($request->session()->get('membre')){
+            return view('/espace-membre');
+        }else{
+            return view('/login');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->forget('membre');
+
+        return redirect('/');
+    }
 
     public function form_login()
     {
         return view('login');
     }
 
+    public function login_traitement(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'motdepasse' => 'required',
+        ]);
 
+        $membre = Membre::where('email', $request->input('email'))->first();
+
+        if($membre){
+            if(Hash::check($request->input('motdepasse'), $membre->motdepasse)){
+
+                $request->session()->put('membre', $membre);
+
+                return redirect('/espace-membre');
+
+            }else{
+                return back()->with('status', 'Identifiant ou mot de passe de connexion incorrect.');
+            }
+        }else{
+            return back()->with('status', 'Désolé ! vous n\'avez pas de compte avec cet identifiant.');
+        }
+
+    }
 
     public function form_register()
     {

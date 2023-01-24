@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MembresController;
 use App\Http\Controllers\ColonneController;
 use App\Http\Controllers\DepartementController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +17,26 @@ use App\Http\Controllers\DepartementController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', function (Request $request) {
+
+    if($request->session()->get('membre')){
+
+        return redirect('/espace-membre');
+
+    }else{
+
+        return redirect('/login');
+
+    }
+
 });
 
+Route::get('/espace-membre', [MembresController::class, 'espace_membre']);
+
+Route::get('/logout', [MembresController::class, 'logout']);
+
 Route::get('/login', [MembresController::class, 'form_login']);
+Route::post('/login/traitement', [MembresController::class, 'login_traitement']);
 
 Route::get('/register', [MembresController::class, 'form_register']);
 Route::post('/register/traitement', [MembresController::class, 'register_traitement']);
