@@ -15,7 +15,8 @@ class MembresController extends Controller
     public function espace_membre(Request $request)
     {
         if($request->session()->get('membre')){
-            return view('/espace-membre');
+            $membres = Membre::get();
+            return view('/espace-membre', compact('membres'));
         }else{
             return view('/login');
         }
