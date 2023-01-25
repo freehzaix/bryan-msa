@@ -12,4 +12,5 @@ Et importe le script de ma base de données dans ta base de données sur ton ord
 
 Pour démarrer un projet Laravel, utilise la commande: 
 - php artisan serve
+
 Mais il faut que le serveur Apache et MySQL soit démarré.
