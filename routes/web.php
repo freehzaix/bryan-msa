@@ -17,6 +17,14 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/storage-link', function(){
+
+    $targetFolder = storage_path('app/public');
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
+    symlink($targetFolder, $linkFolder);
+
+});
+
 Route::get('/', function (Request $request) {
 
     if($request->session()->get('membre')){
@@ -25,7 +33,7 @@ Route::get('/', function (Request $request) {
 
     }else{
 
-        return redirect('/login');
+        return view('/home');
 
     }
 
