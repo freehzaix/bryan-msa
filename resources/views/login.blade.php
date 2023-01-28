@@ -26,7 +26,19 @@
                                         </a>
                                     </p>
                                 </div>
+
                             </div>
+
+                            @if ($errors->any())
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="alert alert-danger">
+                                            {{ $error }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
                             <form action="/login/traitement" method="POST" class="signin-form">
                                 @csrf
                                 <div class="form-group mb-3">
@@ -45,6 +57,7 @@
                                 </div>
 
                             </form>
+
                             <p class="text-center">Pas encore membre? <a href="/register" target="_parent">S'inscrire</a>
                             </p>
                         </div>
