@@ -105,7 +105,9 @@ class MembresController extends Controller
 
         $membre->save();
 
-        return redirect('/register')->with('status', 'Votre inscription a bien été enregistré avec success.');
+        $request->session()->put('membre', $membre);
+
+        return redirect('/espace-membre');
 
     }
 
