@@ -44,7 +44,7 @@
           </main>
 
           <footer class="mt-auto text-white-50">
-            <p>2023 Copyright <a href="https://getbootstrap.com/" class="text-white">MSA</a>, Dévélopper par  <a href="https://twitter.com/mdo" class="text-white">X-TEAM</a>.</p>
+            <p>2023 Copyright <a href="https://www.facebook.com/maisondesagesseetdadoration" class="text-white">MSA</a>, Dévélopper par  <a href="https://www.dsd.me" class="text-white">DSD</a>.</p>
           </footer>
         </div>
 
