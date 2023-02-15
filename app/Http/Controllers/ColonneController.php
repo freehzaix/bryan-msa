@@ -10,7 +10,7 @@ class ColonneController extends Controller
 
     public function form_colonne()
     {
-        return view('colonne.add');
+        return view('admin.colonne.add');
     }
 
     public function traitement_colonne(Request $request)
@@ -25,10 +25,13 @@ class ColonneController extends Controller
         $colonne->colonne_name = $request->input('colonne_name');
         $colonne->save();
 
-        return redirect('/colonne/add')->with('status', 'Vous avez bien enregistré '. $colonne->colonne_code.' avec succes.');
+        return redirect('/admin/colonne/add')->with('status', 'Vous avez bien enregistré '. $colonne->colonne_code.' avec succes.');
 
     }
 
-
+    public function list_colonne(){
+        $colonnes = Colonne::paginate(10);
+        return view('admin.colonne.colonnes', compact('colonnes'));
+    }
 
 }

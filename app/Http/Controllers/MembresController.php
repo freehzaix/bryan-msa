@@ -111,4 +111,9 @@ class MembresController extends Controller
 
     }
 
+    public function list_membre(){
+        $membres = Membre::all();
+        return view('admin.membre.membres', compact('membres'));
+    }
+
 }

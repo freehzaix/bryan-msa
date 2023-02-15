@@ -29,15 +29,7 @@
 
                             </div>
 
-                            @if ($errors->any())
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li class="alert alert-danger">
-                                            {{ $error }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
+
 
                             <form action="/login/traitement" method="POST" class="signin-form">
                                 @csrf
@@ -45,11 +37,17 @@
                                     <label class="label" for="email">Email</label>
                                     <input type="text" class="form-control" name="email"
                                         placeholder="Entrez votre mail" required>
+                                    @if ($errors->has('email'))
+                                        <p style="color: red;">{{ $errors->first('email') }}</p>
+                                    @endif
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label" for="password">Mot de passe </label>
                                     <input type="password" class="form-control" name="motdepasse"
                                         placeholder="Entrez votre Mot de passe" required>
+                                    @if ($errors->has('motdepasse'))
+                                        <p style="color: red;">{{ $errors->first('motdepasse') }}</p>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Se
