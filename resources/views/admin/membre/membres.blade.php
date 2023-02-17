@@ -36,6 +36,7 @@
                             <td>{{ $membre->departement }}</td>
                             <td>
                                 <a href="#" class="btn btn-info">Update</a>
+                                <a href="#" class="btn btn-warning">Reset password</a>
                                 <a href="#" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>

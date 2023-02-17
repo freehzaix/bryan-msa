@@ -71,6 +71,8 @@ Route::post('/login/traitement', [MembresController::class, 'login_traitement'])
 
 Route::get('/register', [MembresController::class, 'form_register']);
 Route::post('/register/traitement', [MembresController::class, 'register_traitement']);
+Route::get('/admin/membre/add', [MembresController::class, 'form_register_admin']);
+Route::post('/admin/membre/add/traitement', [MembresController::class, 'register_traitement_admin']);
 
 Route::get('/admin/colonnes', [ColonneController::class, 'list_colonne']);
 Route::get('/admin/colonne/add', [ColonneController::class, 'form_colonne']);
