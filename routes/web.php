@@ -50,6 +50,10 @@ Route::get('/admin', function(Request $request){
     }
 });
 
+Route::get('/admin/membres/delete/{id}', [MembresController::class, 'delete_membre']);
+Route::get('/admin/membres/update/{id}', [MembresController::class, 'update_membre']);
+Route::post('/admin/membres/update/traitement', [MembresController::class, 'update_membre_traitement']);
+
 Route::get('/admin/profile', [AdminController::class, 'admin_profile']);
 Route::post('/admin/profile/update', [AdminController::class, 'admin_profile_update'])->name('update_profile_admin');
 Route::post('/admin/password/update', [AdminController::class, 'admin_password_update'])->name('update_password_admin');

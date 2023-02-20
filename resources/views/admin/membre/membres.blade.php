@@ -5,6 +5,11 @@
         <div class="panel-body widget-shadow">
             <h4>Liste des membres</h4>
             <hr>
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{  session('status') }}
+                </div>
+            @endif
             <table class="table">
                 <thead>
                     <tr>
@@ -35,9 +40,8 @@
                             <td>{{ $membre->colonne }}</td>
                             <td>{{ $membre->departement }}</td>
                             <td>
-                                <a href="#" class="btn btn-info">Update</a>
-                                <a href="#" class="btn btn-warning">Reset password</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <a href="/admin/membres/update/{{$membre->id}}" class="btn btn-info">Update</a>
+                                <a href="/admin/membres/delete/{{$membre->id}}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                         @php
