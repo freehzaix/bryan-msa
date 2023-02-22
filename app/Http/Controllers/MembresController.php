@@ -7,8 +7,7 @@ use App\Models\Colonne;
 use App\Models\Departement;
 use App\Models\Membre;
 use Illuminate\Support\Facades\Hash;
-
-
+use Illuminate\Support\Facades\Storage;
 
 class MembresController extends Controller
 {
@@ -196,6 +195,8 @@ class MembresController extends Controller
     {
         $membre = Membre::find($id);
         $membre->delete();
+
+        Storage::delete('public/images/' . $membre->image);
 
         return redirect('/admin/membres')->with('status', 'Cet utilisateur a été supprimé avec succès.');
     }

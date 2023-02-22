@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('quartier');
             $table->string('colonne');
             $table->string('departement');
-            $table->string('image')->default('/frontend/Assets/images/no-image.png');
+            $table->string('image')->default('no-image.png');
             $table->timestamps();
         });
     }

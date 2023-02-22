@@ -26,8 +26,8 @@
                             <td>{{ $departement->colonne_name }}</td>
                             <td>{{ $departement->departement_name }}</td>
                             <td>
-                                <a href="#" class="btn btn-info">Update</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <a href="/admin/departements/update/{{$departement->id}}" class="btn btn-info">Update</a>
+                                <a href="/admin/departements/delete/{{$departement->id}}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                         @php

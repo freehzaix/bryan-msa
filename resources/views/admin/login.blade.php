@@ -44,19 +44,19 @@
                         </div>
                         <div class="bottom-content">
 
-                            @if ($errors->any())
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li class="alert alert-danger">
-                                            {{ $error }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
+
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li style="color: red;">
+                                        {{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+
 
                             <form action="/admin/login/traitement" method="post">
                                 @csrf
-                                
+
                                 @if ($errors->has('email'))
                                     <p style="color: red;">{{ $errors->first('email') }}</p>
                                 @endif
@@ -71,6 +71,8 @@
                                     required="required" />
                                 <button type="submit" class="loginhny-btn btn">Connexion</button>
                             </form>
+                            <br>
+                            <a href="/admin/register">Créer un compte administrateur</a>
 
                         </div>
                     </div>

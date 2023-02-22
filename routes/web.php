@@ -78,10 +78,16 @@ Route::post('/register/traitement', [MembresController::class, 'register_traitem
 Route::get('/admin/membre/add', [MembresController::class, 'form_register_admin']);
 Route::post('/admin/membre/add/traitement', [MembresController::class, 'register_traitement_admin']);
 
+Route::get('/admin/colonnes/delete/{id}', [ColonneController::class, 'delete_colonne']);
+Route::post('/admin/colonnes/update/traitement', [ColonneController::class, 'update_colonne_traitement']);
+Route::get('/admin/colonnes/update/{id}', [ColonneController::class, 'update_colonne']);
 Route::get('/admin/colonnes', [ColonneController::class, 'list_colonne']);
 Route::get('/admin/colonne/add', [ColonneController::class, 'form_colonne']);
 Route::post('/admin/colonne/add/traitement', [ColonneController::class, 'traitement_colonne']);
 
+Route::get('/admin/departements/delete/{id}', [DepartementController::class, 'delete_departement']);
+Route::post('/admin/departements/update/traitement', [DepartementController::class, 'update_departement_traitement']);
+Route::get('/admin/departements/update/{id}', [DepartementController::class, 'update_departement']);
 Route::get('/admin/departements', [DepartementController::class, 'list_departement']);
 Route::get('/admin/departement/add', [DepartementController::class, 'form_departement']);
 Route::post('/admin/departement/add/traitement', [DepartementController::class, 'traitement_departement']);

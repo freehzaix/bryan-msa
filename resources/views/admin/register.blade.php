@@ -79,7 +79,8 @@
 
                                 <button type="submit" class="loginhny-btn btn">Inscription</button>
                             </form>
-
+                            <br>
+                            <a href="/admin/login">Se connecter en temps qu'administrateur</a>
                         </div>
                     </div>
                 </div>

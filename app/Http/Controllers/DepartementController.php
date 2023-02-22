@@ -43,4 +43,33 @@ class DepartementController extends Controller
             ->paginate(10);
         return view('admin.departement.departements', compact('departements'));
     }
+
+    public function update_departement($id){
+        $departements = Departement::find($id);
+        $colonnes = Colonne::all();
+        return view('admin.departement.update', compact('departements', 'colonnes'));
+    }
+
+    public function update_departement_traitement(Request $request){
+        $request->validate([
+            "departement_code" => "required",
+            "departement_name" => "required",
+            "colonne_id" => "required",
+        ]);
+        $departement = Departement::find($request->id);
+        $departement->departement_code = $request->departement_code;
+        $departement->departement_name = $request->departement_name;
+        $departement->colonne_id = $request->colonne_id;
+        $departement->update();
+        return redirect('/admin/departements')->with('status', 'Vous avez bien modifié '. $departement->departement_code.' avec succes.');
+
+    }
+
+    public function delete_departement($id){
+        $departement = Departement::find($id);
+        $departement->delete();
+        return redirect('/admin/departements')->with('status', 'Vous avez bien supprimé '. $departement->departement_code.' avec succes.');
+    }
+
+
 }

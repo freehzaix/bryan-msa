@@ -34,4 +34,29 @@ class ColonneController extends Controller
         return view('admin.colonne.colonnes', compact('colonnes'));
     }
 
+    public function update_colonne($id){
+        $colonnes = Colonne::find($id);
+        return view('admin.colonne.update', compact('colonnes'));
+    }
+
+    public function update_colonne_traitement(Request $request){
+        $request->validate([
+            "colonne_code" => "required",
+            "colonne_name" => "required",
+        ]);
+        $colonne = Colonne::find($request->id);
+        $colonne->colonne_code = $request->colonne_code;
+        $colonne->colonne_name = $request->colonne_name;
+        $colonne->update();
+        return redirect('/admin/colonnes')->with('status', 'Vous avez bien modifié '. $colonne->colonne_code.' avec succes.');
+
+    }
+
+    public function delete_colonne($id){
+        $colonne = Colonne::find($id);
+        $colonne->delete();
+        return redirect('/admin/colonnes')->with('status', 'Vous avez bien supprimé '. $colonne->colonne_code.' avec succes.');
+
+    }
+
 }

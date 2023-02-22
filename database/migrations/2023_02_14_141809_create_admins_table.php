@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('image');
+            $table->string('image')->default('no-image.png');
             $table->string('password');
             $table->timestamps();
         });
