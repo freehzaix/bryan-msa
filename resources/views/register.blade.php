@@ -4,6 +4,7 @@
     Inscription
 @endsection
 
+
 @section('content')
     <section class="ftco-section">
         <div class="container">
@@ -37,52 +38,70 @@
                                 <div class="row">
                                     <div class="col mb-3 form-group">
                                         <label class="label" for="nom">Nom</label>
-                                        <input type="text" class="form-control" name="nom" placeholder="Nom"
-                                            aria-label="nom" required>
+                                        <input type="text" class="form-control" name="nom" placeholder="Nom" aria-label="nom" required value="{{ old('nom') }}">
                                     </div>
                                     <div class="col mb-3 form-group">
                                         <label class="label" for="Prénom">Prénom</label>
-                                        <input type="text" class="form-control" name="prenom" placeholder="Prénom"
-                                            aria-label="prénom" required>
+                                        <input type="text" class="form-control" name="prenom" placeholder="Prénom" aria-label="prénom" required value="{{ old('prenom') }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <label class="label" for="email">Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" required value="{{ old('email') }}">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label" for="tel">Téléphone</label>
-                                    <input type="number" name="telephone" class="form-control" placeholder="+225 07070707"
-                                        required>
+                                    <input type="number" name="telephone" class="form-control" placeholder="+225 07070707" value="{{ old('telephone') }}" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label" for="quartier">Quartier</label>
-                                    <input type="text" name="quartier" class="form-control" placeholder="Votre quartier"
-                                        required>
+                                    <input type="text" name="quartier" class="form-control" placeholder="Votre quartier" required value="{{ old('quartier') }}">
                                 </div>
 
                                 <div class="row">
                                     <div class="col mb-3 form-group">
                                         <label class="label" for="colone">Choisir sa Colonne</label>
-                                        <select id="inputcolone" name="colonne" class="form-select" required>
+                                        <select id="premiereSelection" name="colonne" class="form-select" required>
                                             <option value="">Choisir une colonne</option>
-                                            @foreach ($colonnes as $colonne)
-                                                <option value="{{ $colonne->colonne_name }}"> {{ $colonne->colonne_name }}
-                                                </option>
-                                            @endforeach
 
+                                            @foreach ($colonnes as $colonne)
+                                                <option value="{{ $colonne->id }}"> {{ $colonne->colonne_name }}</option>
+                                            @endforeach
+                                               
                                         </select>
                                     </div>
                                     <div class="col mb-3 form-group">
+
                                         <label class="label" for="département">Choisir Son departement</label>
-                                        <select id="inputdepartement" name="departement" class="form-select" required>
+                                        <select name="departement" id="deuxiemeSelection" class="form-select" required>
                                             <option value="">Choisir un département</option>
-                                            @foreach ($departements as $departement)
-                                                <option value="{{ $departement->departement_name }}">
-                                                    {{ $departement->departement_name }} </option>
-                                            @endforeach
+                                            
+                                              
                                         </select>
+                                        <script>
+                                            $(document).ready(function() {
+                                                $('#premiereSelection').change(function() {
+                                                    var id = $(this).val();
+                                        
+                                                    // Effectuer une requête AJAX vers le serveur
+                                                    $.ajax({
+                                                        url: '/register/' + id,
+                                                        type: 'GET',
+                                                        dataType: 'json',
+                                                        success: function(data) {
+                                                            var deuxiemeSelection = $('#deuxiemeSelection');
+                                                            deuxiemeSelection.empty(); // Vider les options précédentes
+                                        
+                                                            // Parcourir les données et ajouter les options à la deuxième sélection
+                                                            $.each(data, function(key, value) {
+                                                                deuxiemeSelection.append('<option value="' + value.id + '">' + value.departement_name + '</option>');
+                                                            });
+                                                        }
+                                                    });
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
@@ -96,8 +115,7 @@
                                         required>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit"
-                                        class="form-control btn btn-primary rounded submit px-3 ">S'inscrire</button>
+                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3 ">S'inscrire</button>
                                 </div>
                             </form>
                             <!-- fin de la Form -->
@@ -109,4 +127,5 @@
             </div>
         </div>
     </section>
+
 @endsection

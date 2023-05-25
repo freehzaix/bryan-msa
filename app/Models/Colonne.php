@@ -14,4 +14,12 @@ class Colonne extends Model
         'colonne_name',
     ];
 
+    public function departement(){
+        return $this->hasmany(Departement::class);
+    }
+
+    public function membre(){
+        return $this->hasmany(Membre::class);
+    }
+
 }

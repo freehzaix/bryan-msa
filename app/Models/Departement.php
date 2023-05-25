@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Departement extends Model
 {
@@ -15,4 +16,12 @@ class Departement extends Model
         'colonne_id',
     ];
 
+    public function colonne(){
+        return $this->belongsTo(Colonne::class);
+    }
+
+    public function membre(){
+        return $this->hasmany(Membre::class);
+    }
+    
 }

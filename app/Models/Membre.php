@@ -21,4 +21,12 @@ class Membre extends Model
         'image',
     ];
 
+    public function colonne(){
+        return $this->belongsTo(Colonne::class);
+    }
+
+    public function departement(){
+        return $this->belongsTo(Colonne::class);
+    }
+
 }

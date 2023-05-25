@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Storage;
 
 class MembresController extends Controller
 {
+
+    public function getData($id)
+    {
+        $data = Departement::where('colonne_id', $id)->get(); // Remplacez DropdownData par le nom de votre modèle et le champ à utiliser pour filtrer
+
+        return response()->json($data);
+    }
+
     public function espace_membre(Request $request)
     {
         if ($request->session()->get('membre')) {
@@ -199,6 +207,18 @@ class MembresController extends Controller
         Storage::delete('public/images/' . $membre->image);
 
         return redirect('/admin/membres')->with('status', 'Cet utilisateur a été supprimé avec succès.');
+    }
+
+    public function modifierProfile(Request $request){
+
+        if ($request->session()->get('membre')){
+            $colonne = Colonne::findOrFail($request->session()->get('membre')->colonne);
+            $departement = Departement::findOrFail($request->session()->get('membre')->departement);
+            return view('modifier-profil', compact('colonne', 'departement'));
+        }else{
+            return redirect('/login');
+        }
+        
     }
 
 }

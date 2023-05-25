@@ -61,33 +61,31 @@
     <div class="container-fluid">
         <div class="row mt-4 ">
 
-            @foreach ($membres as $membre)
-
             <div class="col-md-4 ">
                 <div class="card mb-3 shadow p-3 mb-5 bg-body rounded border-0" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-5">
-                            <img src="/storage/images/{{ $membre->image }}" class="img-fluid rounded-start" alt="...">
+                            <img src="/storage/images/{{ session('membre')->image }}" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body font-roboto ">
-                                <h5 class="card-title fw-bold text-warning">{{ $membre->nom }} {{ $membre->prenom }}</h5>
+                                <h5 class="card-title fw-bold text-warning">{{ session('membre')->nom }} {{ session('membre')->prenom }}</h5>
                                 <p class="card-text text-capitalize fw-semibold"> <i
-                                        class="fa-solid fa-building-user"></i> Colone : {{ $membre->colonne }} </p>
+                                        class="fa-solid fa-building-user"></i> Colonne: {{  $colonne->colonne_name }} </p>
                                 <p class="card-text text-capitalize fw-semibold"> <i
-                                        class="fa-solid fa-building-user"></i> Departement : {{ $membre->departement }}</p>
+                                        class="fa-solid fa-building-user"></i> Departement: {{ $departement->departement_name }}</p>
                                 <p class="card-text fw-semibold"> <i class="fa-solid fa-mobile-screen-button"></i>
-                                    {{ $membre->telephone }}</p>
+                                    {{ session('membre')->telephone }}</p>
                                 <p class="card-text text-capitalize fst-italic"><small class="text-muted"><i
-                                            class="fa-solid fa-map-location-dot"></i> Habite {{ $membre->quartier }}</small></p>
-                                            <a href="mailto:{{ $membre->email }}">{{ $membre->email }}</a>
+                                            class="fa-solid fa-map-location-dot"></i> Habite {{ session('membre')->quartier }}</small></p>
+                                            <a href="mailto:{{ session('membre')->email }}">{{ session('membre')->email }}</a>
                             </div>
                         </div>
+
+                        
                     </div>
                 </div>
             </div>
-
-            @endforeach
 
         </div>
     </div>

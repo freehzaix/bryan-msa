@@ -66,12 +66,14 @@ Route::get('/admin/register', [AdminController::class, 'form_admin_register']);
 Route::post('/admin/register/traitement', [AdminController::class, 'form_admin_register_traitement']);
 Route::post('/admin/login/traitement', [AdminController::class, 'form_admin_login_traitement']);
 
-Route::get('/espace-membre', [MembresController::class, 'espace_membre']);
+Route::get('/espace-membre', [MembresController::class, 'espace_membre'])->name('espace_membre');
 
 Route::get('/logout', [MembresController::class, 'logout']);
 
 Route::get('/login', [MembresController::class, 'form_login']);
 Route::post('/login/traitement', [MembresController::class, 'login_traitement']);
+
+
 
 Route::get('/register', [MembresController::class, 'form_register']);
 Route::post('/register/traitement', [MembresController::class, 'register_traitement']);
@@ -93,3 +95,6 @@ Route::get('/admin/departement/add', [DepartementController::class, 'form_depart
 Route::post('/admin/departement/add/traitement', [DepartementController::class, 'traitement_departement']);
 
 Route::get('/admin/membres', [MembresController::class, 'list_membre']);
+
+Route::get('register/{id}', [MembresController::class, 'getData']);
+Route::get('modifier-profil', [MembresController::class, 'modifierProfile']);

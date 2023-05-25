@@ -206,9 +206,9 @@
                         <li class="dropdown profile_details_drop">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">
-                                    <span class="prfil-img"><img
-                                            src="/storage/images_admin/{{ session('admin')->image }}" height="50px"
-                                            alt=""> </span>
+                                    <span class="prfil-img">
+                                        <!--<img src="/storage/images_admin/{{ session('admin')->image }}" height="50px"
+                                            alt=""> --></span>
                                     <div class="user-name">
                                         <p>{{ session('admin')->prenom }} {{ session('admin')->nom }}</p>
                                         <span>{{ session('admin')->email }}</span>
