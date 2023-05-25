@@ -14,12 +14,22 @@ Tableau admin ajouté:
 - ajouter/modifier/supprimer des départements
 - je vais reinitialiser la base de données
 
-Instruction: je t'ai envoyer une base de données par mail. Insert le nom de la base de données de le fichier .env.
-Et importe le script de ma base de données dans ta base de données sur ton ordi.
+## Instruction: 
+Pour créer les tables de la base de données, il faut créer une base de données avec Xampp et mettre le nom de la base de données dans le ficier .env.
+
+Pour installer toutes les dépendances de PHP, il faut faire la commande:
+### composer install
+
+
+Ensuite, utilisez la commande:
+### php artisan migrate
+
+Pour réinitialiser la base de données:
+### php artisan migrate:refresh
 
 Pour démarrer un projet Laravel, utilise la commande: 
-- php artisan serve
+### php artisan serve
 
 Mais il faut que le serveur Apache et MySQL soit démarré.
 
-Pour la base données, voici mon mail: jeanlucdoh@gmail.com
+Voici mon mail: jeanlucdoh@gmail.com
