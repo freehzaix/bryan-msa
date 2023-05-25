@@ -97,4 +97,9 @@ Route::post('/admin/departement/add/traitement', [DepartementController::class, 
 Route::get('/admin/membres', [MembresController::class, 'list_membre']);
 
 Route::get('register/{id}', [MembresController::class, 'getData']);
-Route::get('modifier-profil', [MembresController::class, 'modifierProfile']);
+Route::get('modifier-profil/{id}', [MembresController::class, 'getData']);
+Route::get('/modifier-profil', [MembresController::class, 'modifierProfile']);
+Route::post('/modifier-profil', [MembresController::class, 'modifierProfilePost']);
+
+Route::get('/espace-membre/colonne/{id}', [MembresController::class, 'AfficherMembreColonne']);
+Route::get('/espace-membre/departement/{id}', [MembresController::class, 'AfficherMembreDepartement']);

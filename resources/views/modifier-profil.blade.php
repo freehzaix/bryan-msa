@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,8 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../Assets/css/memb.css">
     <script src="https://kit.fontawesome.com/f47a995387.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -43,11 +46,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white text-capitalize fst-italic" href="#"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-house-user"></i> {{ session('membre')->prenom }} {{ session('membre')->nom }}
+                            <i class="fa-solid fa-house-user"></i> {{ session('membre')->prenom }}
+                            {{ session('membre')->nom }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/modifier-profil">Modifier profil</a></li>
-                            <li><a class="dropdown-item" href="/logout">Deconnection</a></li>
+                            <li><a class="dropdown-item" href="./modifier-profil">Modifier profil</a></li>
+                            <li><a class="dropdown-item" href="./logout">Deconnection</a></li>
                             <!--  <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li> -->
                         </ul>
@@ -61,30 +65,94 @@
     <div class="container-fluid">
         <div class="row mt-4 ">
 
-            <div class="col-md-4 ">
-                <div class="card mb-3 shadow p-3 mb-5 bg-body rounded border-0" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-5">
-                            <img src="/storage/images/{{ session('membre')->image }}" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body font-roboto ">
-                                <h5 class="card-title fw-bold text-warning">{{ session('membre')->nom }} {{ session('membre')->prenom }}</h5>
-                                <p class="card-text text-capitalize fw-semibold"> <i
-                                        class="fa-solid fa-building-user"></i> Colonne: {{  $colonne->colonne_name }} </p>
-                                <p class="card-text text-capitalize fw-semibold"> <i
-                                        class="fa-solid fa-building-user"></i> Departement: {{ $departement->departement_name }}</p>
-                                <p class="card-text fw-semibold"> <i class="fa-solid fa-mobile-screen-button"></i>
-                                    {{ session('membre')->telephone }}</p>
-                                <p class="card-text text-capitalize fst-italic"><small class="text-muted"><i
-                                            class="fa-solid fa-map-location-dot"></i> Habite {{ session('membre')->quartier }}</small></p>
-                                            <a href="mailto:{{ session('membre')->email }}">{{ session('membre')->email }}</a>
-                            </div>
-                        </div>
+            <div class="row">
 
+                
+
+                <div class="col"></div>
+                <div class="col">
+                    <h2 class="card-title">Modifier mon profil</h2>
+                    @if(session('status'))
+                        <div class="alert alert-success mt-2"> {{ session('status') }} </div>
+                    @endif
+                    <form class="mt-3" action="./modifier-profil" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="" class="form-label">Adresse mail</label>
+                            <input type="email" class="form-control" name="email"
+                                value="{{ session('membre')->email }}" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Nom</label>
+                            <input type="text" class="form-control" name="nom"
+                                value="{{ session('membre')->nom }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" name="prenom"
+                                value="{{ session('membre')->prenom }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" name="telephone"
+                                value="{{ session('membre')->telephone }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Quartier</label>
+                            <input type="text" class="form-control" name="quartier"
+                                value="{{ session('membre')->quartier }}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="label" for="colone">Colonne</label>
+                            <select id="premiereSelection" name="colonne" class="form-select" required>
+                                <option value="">Choisir une colonne</option>
+
+                                @foreach ($colonnes as $colonne)
+                                    <option value="{{ $colonne->id }}"> {{ $colonne->colonne_name }}</option>
+                                @endforeach
+                                   
+                            </select>
+                        </div>
+                        <div class="mb-3">
+
+                            <label class="label" for="département">Département</label>
+                            <select name="departement" id="deuxiemeSelection" class="form-select" required>
+                                <option value="">Choisir un département</option>
+                                
+                                  
+                            </select>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#premiereSelection').change(function() {
+                                        var id = $(this).val();
+                            
+                                        // Effectuer une requête AJAX vers le serveur
+                                        $.ajax({
+                                            url: './modifier-profil/' + id,
+                                            type: 'GET',
+                                            dataType: 'json',
+                                            success: function(data) {
+                                                var deuxiemeSelection = $('#deuxiemeSelection');
+                                                deuxiemeSelection.empty(); // Vider les options précédentes
+                            
+                                                // Parcourir les données et ajouter les options à la deuxième sélection
+                                                $.each(data, function(key, value) {
+                                                    deuxiemeSelection.append('<option value="' + value.id + '">' + value.departement_name + '</option>');
+                                                });
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
+                        </div>
                         
-                    </div>
+                        <button type="submit" class="btn btn-primary">Enregistrer les modification</button>
+                        <br /> <br /> <br />
+                    </form>
                 </div>
+                <div class="col"></div>
+
+
             </div>
 
         </div>

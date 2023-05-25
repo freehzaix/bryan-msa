@@ -11,7 +11,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
                     <div class="wrap d-md-flex">
-                        <div class="img" style="background-image: url(/frontend/Assets/images/msa-register-img.jpg);">
+                        <div class="img" style="background-image: url(./frontend/Assets/images/msa-register-img.jpg);">
                         </div>
                         <div class="login-wrap p-4 p-md-5">
                             <div class="d-flex">
@@ -39,7 +39,7 @@
                                 </ul>
                             @endif
 
-                            <form action="/login/traitement" method="POST" class="signin-form">
+                            <form action="./login/traitement" method="POST" class="signin-form">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label class="label" for="email">Email</label>
@@ -64,7 +64,7 @@
 
                             </form>
 
-                            <p class="text-center">Pas encore membre? <a href="/register" target="_parent">S'inscrire</a>
+                            <p class="text-center">Pas encore membre? <a href="./register" target="_parent">S'inscrire</a>
                             </p>
                         </div>
                     </div>

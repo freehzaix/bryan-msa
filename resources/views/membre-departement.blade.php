@@ -50,7 +50,7 @@
         }
 
         .imgbg {
-            background-image: url(./frontend/Assets/images/pexels-jean-van-der-meulen-1547706.jpg);
+            background-image: url(../../frontend/Assets/images/pexels-jean-van-der-meulen-1547706.jpg);
             background-size: cover;
             width: 100%;
             height: 350px;
@@ -108,8 +108,8 @@
                             {{ session('membre')->nom }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./modifier-profil">Modifier profil</a></li>
-                            <li><a class="dropdown-item" href="./logout">Deconnection</a></li>
+                            <li><a class="dropdown-item" href="../../modifier-profil">Modifier profil</a></li>
+                            <li><a class="dropdown-item" href="../../logout">Deconnection</a></li>
                             <!--  <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li> -->
                         </ul>
@@ -126,12 +126,7 @@
         <section class="py-5 text-center  container">
             <div class="row py-lg-5">
                 <div class="col-lg-8 col-md-8 mx-auto">
-                    <h1 class="fw-light">Bienvenue, sur les 7 colonnes de la MSA</h1>
-                    <p class="lead text-body-secondary">La Maison de Sagesse et d’Adoration est structurée en 7 groupes,
-                        image des
-                        7 colonnes. Chaque colonne porte un nom, a un superviseur, et est subdivisé en plusieurs
-                        départements.
-                        Chaque département a un nom, un responsable et des membres..</p>
+                    <h2 class="fw-light">Bienvenue, sur la liste des membres du département <b>{{ $departement->departement_name }}</b> de la MSA</h2>
                     <!--  <p>
           <a href="#" class="btn btn-primary my-2">Main call to action</a>
           <a href="#" class="btn btn-secondary my-2">Secondary action</a>
@@ -145,12 +140,27 @@
 
                 <div class="row mt-4">
 
-                    @foreach ($colonnes as $colonne)
+                    @foreach ($membres as $membre)
+                    
                         <div class="col-md-4 mb-4">
-                            <a href="{{ route('espace_membre') }}/colonne/{{ $colonne->id }}" class="text-white">
+                            <a href="#" class="text-white">
+                                
                                 <div class="card shadow-sm text-bg-dark imgbg ">
+                                    
                                     <div class="card-img-overlay ">
-                                        <h5 class="card-title text-uppercase">{{ $colonne->colonne_name }}</h5>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="../../storage/images/{{  $membre->image }}" class="img-fluid rounded-start" alt="...">   
+                                            </div>
+                                            <div class="col-9 mt-5">
+                                                <h5 class="card-title text-uppercase">{{ $membre->prenom }} {{ $membre->nom }}</h5>
+                                                <h6 class="card-title text-uppercase">{{ $membre->telephone }}</h6>
+                                                <h6 class="card-title">{{ $membre->quartier }}</h6>
+                                                <p class="card-title">{{ $membre->email }}</p>
+                                            </div>
+                                        </div>
+                                        
+                                        
                                     </div>
                                 </div>
                             </a>

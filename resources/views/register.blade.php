@@ -32,7 +32,7 @@
                                 </ul>
                             @endif
 
-                            <form action="/register/traitement" method="POST" enctype="multipart/form-data"
+                            <form action="./register/traitement" method="POST" enctype="multipart/form-data"
                                 class="signup-form">
                                 @csrf
                                 <div class="row">
@@ -86,7 +86,7 @@
                                         
                                                     // Effectuer une requête AJAX vers le serveur
                                                     $.ajax({
-                                                        url: '/register/' + id,
+                                                        url: './register/' + id,
                                                         type: 'GET',
                                                         dataType: 'json',
                                                         success: function(data) {
@@ -104,6 +104,7 @@
                                         </script>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group mb-3">
                                     <label class="label" for="inputGroupImg">Téléchargez une image de profil</label>
                                     <input type="file" name="image" class="form-control" id="inputGroupImg">
@@ -119,7 +120,7 @@
                                 </div>
                             </form>
                             <!-- fin de la Form -->
-                            <p class="text-center">Déja membre? <a href="/login"> Se connecter </a>
+                            <p class="text-center">Déja membre? <a href="./login"> Se connecter </a>
                             </p>
                         </div>
                     </div>

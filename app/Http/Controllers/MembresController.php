@@ -23,7 +23,8 @@ class MembresController extends Controller
     {
         if ($request->session()->get('membre')) {
             $membres = Membre::get();
-            return view('/espace-membre', compact('membres'));
+            $colonnes = Colonne::all();
+            return view('/espace-membre', compact('membres', 'colonnes'));
         } else {
             return view('/login');
         }
@@ -212,13 +213,54 @@ class MembresController extends Controller
     public function modifierProfile(Request $request){
 
         if ($request->session()->get('membre')){
-            $colonne = Colonne::findOrFail($request->session()->get('membre')->colonne);
-            $departement = Departement::findOrFail($request->session()->get('membre')->departement);
-            return view('modifier-profil', compact('colonne', 'departement'));
+            $colonnes = Colonne::all();
+            $departements = Departement::all();
+            return view('modifier-profil', compact('colonnes', 'departements'));
         }else{
             return redirect('/login');
         }
         
+    }
+
+    public function AfficherMembreColonne($id){
+        
+        $colonne = Colonne::where('id', $id)->get()->first();
+        $departements = Departement::where('colonne_id', $id)->get();
+
+        return view('membre-colonne', compact('departements', 'colonne'));
+
+    }
+
+    public function AfficherMembreDepartement($id){
+
+        $departement = Departement::where('id', $id)->get()->first();
+        $membres = Membre::where('departement', $id)->get();
+
+        return view('membre-departement', compact('departement', 'membres'));
+
+    }
+
+    public function modifierProfilePost(Request $request){
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'quartier' => 'required',
+            'telephone' => 'required',
+            'colonne' => 'required',
+            'departement' => 'required',
+        ]);
+        $membre = Membre::find($request->session()->get('membre')->id);
+        $membre->nom = $request->nom;
+        $membre->prenom = $request->prenom;
+        $membre->quartier = $request->quartier;
+        $membre->telephone = $request->telephone;
+        $membre->colonne = $request->colonne;
+        $membre->departement = $request->departement;
+        $membre->update();
+
+        $request->session()->put('membre', $membre);
+
+        return redirect('/modifier-profil')->with('status', 'Le profil a bien été modifié.');
     }
 
 }

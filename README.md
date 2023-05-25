@@ -12,7 +12,8 @@ Tableau admin ajouté:
 - supprimer les membres
 - ajouter/modifier/supprimer des colonnes
 - ajouter/modifier/supprimer des départements
-- je vais reinitialiser la base de données
+
+- ajouter fonction modifier un profil
 
 ## Instruction: 
 Pour créer les tables de la base de données, il faut créer une base de données avec Xampp et mettre le nom de la base de données dans le ficier .env.
