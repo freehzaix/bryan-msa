@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('quartier');
             $table->string('colonne');
             $table->string('departement');
+            $table->string('situation_matrimoniale')->nullable();
             $table->string('image')->default('no-image.png');
             $table->timestamps();
         });

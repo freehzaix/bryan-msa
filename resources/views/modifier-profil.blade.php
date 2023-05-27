@@ -32,7 +32,7 @@
 
     <nav class="navbar navbar-expand-lg  fixed-top " style="background-color: #0d8ae2;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MSA</a>
+            <a class="navbar-brand" href="{{ route('espace_membre') }}">MSA</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -61,15 +61,11 @@
         </div>
     </nav>
 
-
     <div class="container-fluid">
         <div class="row mt-4 ">
 
             <div class="row">
 
-                
-
-                <div class="col"></div>
                 <div class="col">
                     <h2 class="card-title">Modifier mon profil</h2>
                     @if(session('status'))
@@ -146,11 +142,36 @@
                             </script>
                         </div>
                         
+                        <div class="form-group mb-3">
+                            <label class="label" for="colone">Situation matrimoniale</label>
+                            <select name="situation_matrimoniale" class="form-select" required>
+                                <option value="{{ session('membre')->situation_matrimoniale }}">{{ session('membre')->situation_matrimoniale }}</option>
+                                <option value="">--</option>
+                                <option value="Célibataire">Célibataire</option>
+                                <option value="Célibataire ceinture noire">Célibataire ceinture noire</option>
+                                <option value="Marié(e)">Marié(e)</option>
+                                <option value="Veuf(ve)">Veuf(ve)</option>
+                            </select>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Enregistrer les modification</button>
                         <br /> <br /> <br />
                     </form>
+
+                    <form action="{{ route('modifier_image_profil') }}"method="POST" enctype="multipart/form-data" class="signup-form">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <label class="label" for="inputGroupImg">Téléchargez une image de profil</label>
+                            <input type="file" name="image" class="form-control" id="inputGroupImg">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary rounded submit px-3 ">Modifier image de profil</button>
+                        </div>
+                        <br /> <br /> <br />
+                    </form>
+
                 </div>
-                <div class="col"></div>
+                
 
 
             </div>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('colonne_code');
             $table->string('colonne_name');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

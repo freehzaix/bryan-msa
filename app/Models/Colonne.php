@@ -12,6 +12,7 @@ class Colonne extends Model
     protected $fillable = [
         'colonne_code',
         'colonne_name',
+        'image',
     ];
 
     public function departement(){

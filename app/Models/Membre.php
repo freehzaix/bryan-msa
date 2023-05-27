@@ -19,6 +19,7 @@ class Membre extends Model
         'colonne',
         'departement',
         'image',
+        'situation_matrimoniale',
     ];
 
     public function colonne(){

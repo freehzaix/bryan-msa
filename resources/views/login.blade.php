@@ -30,21 +30,27 @@
                             </div>
 
                             @if ($errors->any())
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li class="alert alert-danger">
-                                            {{ $error }}
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             @endif
+
 
                             <form action="./login/traitement" method="POST" class="signin-form">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label class="label" for="email">Email</label>
                                     <input type="text" class="form-control" name="email"
-                                        placeholder="Entrez votre mail" required>
+                                        placeholder="Entrez votre mail">
+                                    @if (session('erreur-email'))
+                                        <div class="text text-danger">
+                                            {{ session('erreur-email') }}
+                                        </div>
+                                    @endif
                                     @if ($errors->has('email'))
                                         <p style="color: red;">{{ $errors->first('email') }}</p>
                                     @endif
@@ -52,7 +58,12 @@
                                 <div class="form-group mb-3">
                                     <label class="label" for="password">Mot de passe </label>
                                     <input type="password" class="form-control" name="motdepasse"
-                                        placeholder="Entrez votre Mot de passe" required>
+                                        placeholder="Entrez votre Mot de passe">
+                                    @if (session('erreur-motdepasse'))
+                                        <div class="text text-danger">
+                                            {{ session('erreur-motdepasse') }}
+                                        </div>
+                                    @endif
                                     @if ($errors->has('motdepasse'))
                                         <p style="color: red;">{{ $errors->first('motdepasse') }}</p>
                                     @endif

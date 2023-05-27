@@ -13,6 +13,7 @@ class Departement extends Model
     protected $fillable = [
         'departement_code',
         'departement_name',
+        'image',
         'colonne_id',
     ];
 

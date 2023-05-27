@@ -32,13 +32,13 @@
     <!--//webfonts-->
 
     <!-- chart -->
-    <script src="/backend/js/Chart.js"></script>
+    <script src="./backend/js/Chart.js"></script>
     <!-- //chart -->
 
     <!-- Metis Menu -->
-    <script src="/backend/js/metisMenu.min.js"></script>
-    <script src="/backend/js/custom.js"></script>
-    <link href="/backend/css/custom.css" rel="stylesheet">
+    <script src="./backend/js/metisMenu.min.js"></script>
+    <script src="./backend/js/custom.js"></script>
+    <link href="./backend/css/custom.css" rel="stylesheet">
     <!--//Metis Menu -->
     <style>
         #chartdiv {
@@ -48,7 +48,7 @@
     </style>
     <!--pie-chart -->
     <!-- index page sales reviews visitors pie chart -->
-    <script src="/backend/js/pie-chart.js" type="text/javascript"></script>
+    <script src="./backend/js/pie-chart.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#demo-pie-1').pieChart({
@@ -88,8 +88,8 @@
     <!-- index page sales reviews visitors pie chart -->
 
     <!-- requried-jsfiles-for owl -->
-    <link href="/backend/css/owl.carousel.css" rel="stylesheet">
-    <script src="/backend/js/owl.carousel.js"></script>
+    <link href="./backend/css/owl.carousel.css" rel="stylesheet">
+    <script src="./backend/js/owl.carousel.js"></script>
     <script>
         $(document).ready(function() {
             $("#owl-demo").owlCarousel({

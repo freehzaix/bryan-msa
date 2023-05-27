@@ -62,8 +62,8 @@ Route::get('/admin/password', [AdminController::class, 'admin_password']);
 Route::get('/espace-admin', [AdminController::class, 'espace_admin']);
 Route::get('/admin/logout', [AdminController::class, 'logout']);
 Route::get('/admin/login', [AdminController::class, 'form_admin_login']);
-Route::get('/admin/register', [AdminController::class, 'form_admin_register']);
-Route::post('/admin/register/traitement', [AdminController::class, 'form_admin_register_traitement']);
+Route::get('/admin/register', [AdminController::class, 'form_admin_register'])->name('admin_register');
+Route::post('/admin/register', [AdminController::class, 'form_admin_register_traitement'])->name('admin_register');
 Route::post('/admin/login/traitement', [AdminController::class, 'form_admin_login_traitement']);
 
 Route::get('/espace-membre', [MembresController::class, 'espace_membre'])->name('espace_membre');
@@ -103,3 +103,5 @@ Route::post('/modifier-profil', [MembresController::class, 'modifierProfilePost'
 
 Route::get('/espace-membre/colonne/{id}', [MembresController::class, 'AfficherMembreColonne']);
 Route::get('/espace-membre/departement/{id}', [MembresController::class, 'AfficherMembreDepartement']);
+
+Route::post('/modifier_image_profil', [MembresController::class, 'modifier_image_profil'])->name('modifier_image_profil');

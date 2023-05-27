@@ -18,7 +18,7 @@
     </script>
     <!-- //Meta tag Keywords -->
     <!--/Style-CSS -->
-    <link rel="stylesheet" href="/backend/assets_login/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="./../backend/assets_login/css/style.css" type="text/css" media="all" />
     <!--//Style-CSS -->
 </head>
 
@@ -39,7 +39,7 @@
                         <div class="main-bg">
                             <h6 class="sec-one">Authentification</h6>
                             <div class="speci-login first-look">
-                                <img src="/backend/assets_login/images/user.png" alt="" class="img-responsive">
+                                <img src="./../backend/assets_login/images/user.png" alt="" class="img-responsive">
                             </div>
                         </div>
                         <div class="bottom-content">
@@ -54,7 +54,7 @@
                             </ul>
 
 
-                            <form action="/admin/login/traitement" method="post">
+                            <form action="./login/traitement" method="post">
                                 @csrf
 
                                 @if ($errors->has('email'))
@@ -72,7 +72,7 @@
                                 <button type="submit" class="loginhny-btn btn">Connexion</button>
                             </form>
                             <br>
-                            <a href="/admin/register">Créer un compte administrateur</a>
+                            <a href="{{ route('admin_register') }}">Créer un compte administrateur</a>
 
                         </div>
                     </div>

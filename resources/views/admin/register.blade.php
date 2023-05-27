@@ -18,7 +18,7 @@
     </script>
     <!-- //Meta tag Keywords -->
     <!--/Style-CSS -->
-    <link rel="stylesheet" href="/backend/assets_login/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="./../backend/assets_login/css/style.css" type="text/css" media="all" />
     <!--//Style-CSS -->
 </head>
 
@@ -39,12 +39,12 @@
                         <div class="main-bg">
                             <h6 class="sec-one">Créer un compte admin</h6>
                             <div class="speci-login first-look">
-                                <img src="/backend/assets_login/images/user.png" alt="" class="img-responsive">
+                                <img src="./../backend/assets_login/images/user.png" alt="" class="img-responsive">
                             </div>
                         </div>
                         <div class="bottom-content">
 
-                            <form action="/admin/register/traitement" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin_register') }}" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 @if ($errors->has('email'))
@@ -80,7 +80,7 @@
                                 <button type="submit" class="loginhny-btn btn">Inscription</button>
                             </form>
                             <br>
-                            <a href="/admin/login">Se connecter en temps qu'administrateur</a>
+                            <a href="./../admin/login">Se connecter en temps qu'administrateur</a>
                         </div>
                     </div>
                 </div>
