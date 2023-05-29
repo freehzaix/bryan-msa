@@ -221,7 +221,9 @@ class MembresController extends Controller
         if ($request->session()->get('membre')){
             $colonnes = Colonne::all();
             $departements = Departement::all();
-            return view('modifier-profil', compact('colonnes', 'departements'));
+            $col = Colonne::where('id', $request->session()->get('membre')->colonne)->get()->first();
+            $dep = Departement::where('id', $request->session()->get('membre')->departement)->get()->first();
+            return view('profil', compact('colonnes', 'departements', 'col', 'dep'));
         }else{
             return redirect('/login');
         }
@@ -277,7 +279,7 @@ class MembresController extends Controller
         ]);
         
         if($request->session()->get('membre')->image){
-            Storage::delete('public/images/' . $request->session()->get('membre')->image);
+            Storage::delete('public/storage/images/' . $request->session()->get('membre')->image);
         }
         
         // Enregistrer la nouvelle image
