@@ -14,6 +14,7 @@ Tableau admin ajouté:
 - ajouter/modifier/supprimer des départements
 
 - ajouter fonction modifier un profil
+- j'ai ajouté la fonction qui envoie les mails à l'utilisateur lorsqu'on s'incrit
 
 ## Instruction: 
 Pour créer les tables de la base de données, il faut créer une base de données avec Xampp et mettre le nom de la base de données dans le ficier .env.

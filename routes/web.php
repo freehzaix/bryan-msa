@@ -70,7 +70,7 @@ Route::get('/espace-membre', [MembresController::class, 'espace_membre'])->name(
 
 Route::get('/logout', [MembresController::class, 'logout'])->name('logout');
 
-Route::get('/login', [MembresController::class, 'form_login']);
+Route::get('/login', [MembresController::class, 'form_login'])->name('login');
 Route::post('/login/traitement', [MembresController::class, 'login_traitement']);
 
 

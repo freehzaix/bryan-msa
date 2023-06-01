@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegisterMail;
 use Illuminate\Http\Request;
 use App\Models\Colonne;
 use App\Models\Departement;
 use App\Models\Membre;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class MembresController extends Controller
 {
@@ -85,7 +87,7 @@ class MembresController extends Controller
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required|unique:membres',
-            'telephone' => 'required|unique:membres',
+            'telephone' => 'required',
             'quartier' => 'required',
             'colonne' => 'required',
             'departement' => 'required',
@@ -93,32 +95,37 @@ class MembresController extends Controller
             'motdepasse' => 'required|min:5',
         ]);
 
+        // Enregistrer la nouvelle image
         if ($request->hasFile('image')) {
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameTotore = $filename . '_' . time() . '.' . $extension;
 
-            $path = $request->file('image')->storeAs('public/images/', $fileNameTotore);
+            $userId = time();
+            $image = $request->file('image');
+            $extension = 'jpg';
+            $imageName = $userId . '.' . $extension;
+            $path = $image->storeAs('images', $imageName, 'public');
 
-            $membre = new Membre();
-            $membre->nom = $request->input('nom');
-            $membre->prenom = $request->input('prenom');
-            $membre->email = $request->input('email');
-            $membre->telephone = $request->input('telephone');
-            $membre->quartier = $request->input('quartier');
-            $membre->colonne = $request->input('colonne');
-            $membre->departement = $request->input('departement');
-            $membre->image = $fileNameTotore;
-            $membre->situation_matrimoniale = $request->input('situation_matrimoniale');
-            $membre->motdepasse = bcrypt($request->input('motdepasse'));
-
-            $membre->save();
-
-            $request->session()->put('membre', $membre);
-
-            return redirect('/espace-membre');
         }
+        
+        $membre = new Membre();
+        $membre->nom = $request->input('nom');
+        $membre->prenom = $request->input('prenom');
+        $membre->email = $request->input('email');
+        $membre->telephone = $request->input('telephone');
+        $membre->quartier = $request->input('quartier');
+        $membre->colonne = $request->input('colonne');
+        $membre->departement = $request->input('departement');
+        $membre->image = $path;
+        $membre->situation_matrimoniale = $request->input('situation_matrimoniale');
+        $membre->motdepasse = bcrypt($request->input('motdepasse'));
+
+        $membre->save();
+
+        $request->session()->put('membre', $membre);
+
+        Mail::to($request->input('email'))->send(new RegisterMail($membre));
+
+        return redirect('/espace-membre');
+       
     }
 
     public function register_traitement_admin(Request $request)
