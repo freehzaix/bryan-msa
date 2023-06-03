@@ -46,7 +46,8 @@
                                 </div>
 
                             </form>
-
+                            <p class="text-center">Déja membre? <a href="{{ route('login') }}"> Se connecter </a>
+                            </p>
                         </div>
                     </div>
                 </div>
