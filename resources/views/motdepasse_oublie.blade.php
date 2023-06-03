@@ -20,6 +20,10 @@
                             @if(session('status'))
                                 <div class="alert alert-success"> {{ session('status') }} </div>
                             @endif
+
+                            @if(session('erreur'))
+                                <div class="alert alert-danger"> {{ session('erreur') }} </div>
+                            @endif
                             
                             <form action="{{ route('motdepasse_oublie') }}" method="POST" class="signin-form">
                                 @csrf

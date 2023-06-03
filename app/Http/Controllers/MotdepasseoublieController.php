@@ -18,9 +18,13 @@ class MotdepasseoublieController extends Controller
 
         $membre = Membre::where('email', $request->email)->get()->first();
         
-        Mail::to($request->email)->send(new ResetPasswordMail($membre));
-
-        return redirect('/motdepasse_oublie')->with('status', 'Un mail vous a été envoyé par mail.');
+        if($membre){
+            Mail::to($request->email)->send(new ResetPasswordMail($membre));
+            return redirect('/motdepasse_oublie')->with('status', 'Un mail vous a été envoyé par mail.');
+        }else{
+            return redirect('/motdepasse_oublie')->with('erreur', 'Vous n\'avez pas de compte avec cette adresse mail.');
+        }
+        
     }
 
     //Afficher le formulaire "Nouveau mot de passeé
