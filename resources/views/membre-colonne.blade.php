@@ -140,12 +140,36 @@
 
                 <div class="row mt-4">
 
-                    @foreach ($departements as $departement)
+                    @foreach ($membres as $membre)
+                    
                         <div class="col-md-4 mb-4">
-                            <a href="{{ route('espace_membre') }}/departement/{{ $departement->id }}" class="text-white">
+                            <a href="#" class="text-white">
+                                
                                 <div class="card shadow-sm text-bg-dark imgbg ">
+                                    
                                     <div class="card-img-overlay ">
-                                        <h5 class="card-title text-uppercase">{{ $departement->departement_name }}</h5>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="../../storage/{{  $membre->image }}" class="img-fluid rounded-start" alt="...">   
+                                            </div>
+                                            <div class="col-9 mt-4">
+                                                <h5 class="card-title text-uppercase">{{ $membre->prenom }} {{ $membre->nom }}</h5>
+                                                <h6 class="card-title text-uppercase">{{ $membre->telephone }}</h6>
+                                                <h6 class="card-title">{{ $membre->quartier }}</h6>
+                                                <p class="card-title">{{ $membre->email }}</p>
+                                                <p class="card-title">{{ $membre->situation_matrimoniale }}</p>
+                                                <p class="card-title">
+                                                    @php
+                                                        $departements = DB::table('departements')->where('id', $membre->departement)->get();
+                                                    @endphp
+                                                    @foreach($departements as $departement)
+                                                        <p>{{ $departement->departement_name }}</p>
+                                                    @endforeach
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                        
                                     </div>
                                 </div>
                             </a>

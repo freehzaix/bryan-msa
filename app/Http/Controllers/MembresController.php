@@ -240,9 +240,9 @@ class MembresController extends Controller
     public function AfficherMembreColonne($id){
         
         $colonne = Colonne::where('id', $id)->get()->first();
-        $departements = Departement::where('colonne_id', $id)->get();
+        $membres = Membre::where('colonne', $id)->get();
 
-        return view('membre-colonne', compact('departements', 'colonne'));
+        return view('membre-colonne', compact('membres', 'colonne'));
 
     }
 
