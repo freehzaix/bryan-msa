@@ -5,6 +5,7 @@ use App\Http\Controllers\MembresController;
 use App\Http\Controllers\ColonneController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MotdepasseoublieController;
 use Illuminate\Http\Request;
 
 
@@ -75,7 +76,7 @@ Route::post('/login/traitement', [MembresController::class, 'login_traitement'])
 
 
 
-Route::get('/register', [MembresController::class, 'form_register']);
+Route::get('/register', [MembresController::class, 'form_register'])->name('register');
 Route::post('/register/traitement', [MembresController::class, 'register_traitement']);
 Route::get('/admin/membre/add', [MembresController::class, 'form_register_admin']);
 Route::post('/admin/membre/add/traitement', [MembresController::class, 'register_traitement_admin']);
@@ -105,3 +106,9 @@ Route::get('/espace-membre/colonne/{id}', [MembresController::class, 'AfficherMe
 Route::get('/espace-membre/departement/{id}', [MembresController::class, 'AfficherMembreDepartement']);
 
 Route::post('/modifier_image_profil', [MembresController::class, 'modifier_image_profil'])->name('modifier_image_profil');
+
+Route::get('/motdepasse_oublie', [MembresController::class, 'form_motdepasse_oublie'])->name('motdepasse_oublie');
+Route::post('/motdepasse_oublie/', [MotdepasseoublieController::class, 'motdepasse_oublie'])->name('motdepasse_oublie');
+
+Route::get('/reset_password/{id}', [MotdepasseoublieController::class, 'reset_password'])->name('reset_password');
+Route::post('/reset_password/post', [MotdepasseoublieController::class, 'reset_password_post'])->name('reset_password_post');

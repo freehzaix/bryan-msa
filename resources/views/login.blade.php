@@ -29,6 +29,10 @@
 
                             </div>
 
+                            @if(session('status'))
+                                <div class="alert alert-success"> {{ session('status') }} </div>
+                            @endif
+
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -38,8 +42,7 @@
                                     </ul>
                                 </div>
                             @endif
-
-
+                            
                             <form action="./login/traitement" method="POST" class="signin-form">
                                 @csrf
                                 <div class="form-group mb-3">
@@ -75,8 +78,8 @@
 
                             </form>
 
-                            <p class="text-center">Pas encore membre? <a href="./register" target="_parent">S'inscrire</a>
-                            </p>
+                            <p class="text-center">Pas encore membre? <a href="{{ route('register') }}" target="_parent">S'inscrire</a></p>
+                            <p class="text-center"> <a href="{{ route('motdepasse_oublie') }}" target="_parent">Mot de passe oublié ?</a> </p>
                         </div>
                     </div>
                 </div>

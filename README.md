@@ -15,6 +15,7 @@ Tableau admin ajouté:
 
 - ajouter fonction modifier un profil
 - j'ai ajouté la fonction qui envoie les mails à l'utilisateur lorsqu'on s'incrit
+- j'ai pu ajouté la fonction mot de passe oublié
 
 ## Instruction: 
 Pour créer les tables de la base de données, il faut créer une base de données avec Xampp et mettre le nom de la base de données dans le ficier .env.

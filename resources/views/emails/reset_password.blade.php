@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inscription</title>
+    <title>Reset passord</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -122,23 +122,24 @@
                     <tr>
                         <td data-bgcolor="bg-module" bgcolor="#eaeced">
                             <table class="flexible" width="600" align="center" style="margin:0 auto;" cellpadding="0" cellspacing="0">
-                                <tr  class="card shadow">
-                                    <td class="img-flex"><img src="https://membres.msa.ci/frontend/Assets/images/bgheadermsa.jpg" style="vertical-align:top;" width="600" height="306" alt="" /></td>
-                                </tr>
+                                
                                 <tr>
                                     <td data-bgcolor="bg-block" class="holder" style="padding:58px 60px 52px;" bgcolor="#f9f9f9">
                                         <table width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td data-color="title" data-size="size title" data-min="25" data-max="45" data-link-color="link title color" data-link-style="text-decoration:none; color:#292c34;" class="title" align="center" style="font:35px/38px Arial, Helvetica, sans-serif; color:#292c34; padding:0 0 24px;">
-                                                    Bienvenue sur l'espace membre de la MSA
+                                                    Nouveau mot de passe
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 23px;">
-                                                    Bonjour <b>{{ $data['prenom'] }}</b>, ton inscription a bien été effectué.
-                                                    Vous pouvez vous connecter avec votre adresse mail <a href="#" rel="noopener noreferrer">{{ $data['email'] }}</a> 
-                                                    et le mot de passe que vous avez défini lors de votre inscription.  
-                                                    sur notre plateforme <a href="{{ route('login') }}">membres.msa.ci</a>.
+                                                    Bonjour <b>{{ $data['prenom'] }}</b>, clique sur le lien suivant pour modifier ton mot de passe.
+                                                    <br /> <br />
+
+                                                    <a href="{{ route('reset_password', $data['id']) }}">Re-initialiser le mot de passe</a> 
+                                                     
+                                                    <br /> <br />
+                                                    Se connecter à <a href="{{ route('login') }}">membres.msa.ci</a>.
                                                 </td>
                                             </tr>
                                             

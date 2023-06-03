@@ -131,7 +131,7 @@
                                 </div>
                             </form>
                             <!-- fin de la Form -->
-                            <p class="text-center">Déja membre? <a href="./login"> Se connecter </a>
+                            <p class="text-center">Déja membre? <a href="{{ route('login') }}"> Se connecter </a>
                             </p>
                         </div>
                     </div>

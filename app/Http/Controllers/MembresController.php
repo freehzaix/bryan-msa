@@ -309,4 +309,9 @@ class MembresController extends Controller
         return redirect('/modifier-profil')->with('status', 'Votre image a bien été modifié.');
     }
 
+    //Mot de passe oublié
+    public function form_motdepasse_oublie(){
+        return view('motdepasse_oublie');
+    }
+
 }
