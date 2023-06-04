@@ -81,43 +81,44 @@
 <body>
 
     <header>
-        
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Navbar</span>
-        </div>
-    </nav>
 
-    <nav class="navbar navbar-expand-lg  fixed-top " style="background-color: #0d8ae2;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">MSA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white text-capitalize fw-semibold" aria-current="page"
-                            href="{{ route('espace_membre') }}">Bienvenue</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white text-capitalize fst-italic" href="#"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-house-user"></i> {{ session('membre')->prenom }}
-                            {{ session('membre')->nom }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../../modifier-profil">Modifier profil</a></li>
-                            <li><a class="dropdown-item" href="../../logout">Deconnection</a></li>
-                            <!--  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-                        </ul>
-                    </li>
-                </ul>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Navbar</span>
             </div>
-        </div>
-    </nav>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg  fixed-top " style="background-color: #0d8ae2;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ route('espace_membre') }}">MSA</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white text-capitalize fw-semibold" aria-current="page"
+                                href="{{ route('espace_membre') }}">Bienvenue</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white text-capitalize fst-italic" href="#"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-house-user"></i> {{ session('membre')->prenom }}
+                                {{ session('membre')->nom }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="../../modifier-profil">Modifier profil</a></li>
+                                <li><a class="dropdown-item" href="../../logout">Deconnection</a></li>
+                                <!--  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
     </header>
 
@@ -126,7 +127,9 @@
         <section class="py-5 text-center  container">
             <div class="row py-lg-5">
                 <div class="col-lg-8 col-md-8 mx-auto">
-                    <h2 class="fw-light">Bienvenue, sur la liste des départements de la colonne <b>{{ $colonne->colonne_name }}</b> de la MSA</h2>
+                    <h2 class="fw-light">Bienvenue, sur la liste des membres de la colonne
+                        <b>{{ $colonne->colonne_name }}</b> de la MSA
+                    </h2>
                     <!--  <p>
           <a href="#" class="btn btn-primary my-2">Main call to action</a>
           <a href="#" class="btn btn-secondary my-2">Secondary action</a>
@@ -135,47 +138,90 @@
             </div>
         </section>
 
-        <div class="album py-5 bg-body-tertiary">
-            <div class="container">
+        <div class="album py-3 bg-body-tertiary">
 
-                <div class="row mt-4">
 
+
+
+
+            <div class="container-fluid">
+
+                <div class="row mt-4 ">
                     @foreach ($membres as $membre)
-                    
-                        <div class="col-md-4 mb-4">
-                            <a href="#" class="text-white">
-                                
-                                <div class="card shadow-sm text-bg-dark imgbg ">
-                                    
-                                    <div class="card-img-overlay ">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="../../storage/{{  $membre->image }}" class="img-fluid rounded-start" alt="...">   
-                                            </div>
-                                            <div class="col-9 mt-4">
-                                                <h5 class="card-title text-uppercase">{{ $membre->prenom }} {{ $membre->nom }}</h5>
-                                                <h6 class="card-title text-uppercase">{{ $membre->telephone }}</h6>
-                                                <h6 class="card-title">{{ $membre->quartier }}</h6>
-                                                <p class="card-title">{{ $membre->email }}</p>
-                                                <p class="card-title">{{ $membre->situation_matrimoniale }}</p>
-                                                <p class="card-title">
+                        <div class="col-md-4 ">
+                            <div class="card mb-3 shadow p-3 mb-5 bg-body rounded border-1" style="">
+                                <div class="row g-0 ">
+                                    <div class="col-md-5">
+                                        <img src="../../storage/{{ $membre->image }}" class="img-fluid rounded-start"
+                                            alt="...">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body font-roboto ">
+                                            <h5 class="card-title fw-bold text-primary-emphasis">{{ $membre->prenom }}
+                                                {{ $membre->nom }}</h5>
+                                            <p class="card-text text-capitalize fw-semibold"><small
+                                                    class="text-muted"><i class="fa-solid fa-building-user"></i> :
+                                                    {{ $membre->situation_matrimoniale }} </small></p>
+                                            <p class="card-text fw-semibold"> <i class="fa-solid fa-at"></i> :
+                                                {{ $membre->email }} </p>
+                                            <p class="card-text fw-semibold"> <i
+                                                    class="fa-solid fa-mobile-screen-button"></i> :
+                                                {{ $membre->telephone }}</p>
+
+                                            <p class="card-text text-capitalize fst-italic"><small class="text-muted"><i
+                                                        class="fa-solid fa-map-location-dot"></i> :
+                                                    {{ $membre->quartier }}</small></p>
+
+                                            <p class="card-text text-capitalize fw-semibold"><small
+                                                    class="text-muted"><i class="fa-solid fa-building-user"></i> :
                                                     @php
-                                                        $departements = DB::table('departements')->where('id', $membre->departement)->get();
+                                                        $colonnes = DB::table('colonnes')
+                                                            ->where('id', $membre->colonne)
+                                                            ->get();
                                                     @endphp
-                                                    @foreach($departements as $departement)
-                                                        <p>{{ $departement->departement_name }}</p>
+                                                    @foreach ($colonnes as $colonne)
+                                                        {{ $colonne->colonne_name }}
                                                     @endforeach
-                                                </p>
-                                            </div>
+                                                    /
+                                                    @php
+                                                        $departements = DB::table('departements')
+                                                            ->where('id', $membre->departement)
+                                                            ->get();
+                                                    @endphp
+                                                    @foreach ($departements as $departement)
+                                                        {{ $departement->departement_name }}
+                                                    @endforeach
+                                                </small>
+                                            </p>
+
                                         </div>
-                                        
-                                        
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     @endforeach
 
+
+                    <!--         <div class="col-md-4 ">
+                                <div class="card mb-3 shadow p-3 mb-5 bg-body rounded border-0" style="max-width: 540px; max-height: 250px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-5" style="">
+                                            <img src="../../storage/{{ $membre->image }}" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        
+                            <div class="col-md-7">
+                            <div class="card-body font-roboto ">
+                                <h5 class="card-title fw-bold text-warning">{{ $membre->prenom }} {{ $membre->nom }}</h5>
+                                    <p class="card-text text-capitalize fst-italic"> <i class="fa-solid fa-building-user"></i> {{ session('membre')->situation_matrimoniale }} </p>
+                                    <p class="card-text text-capitalize fw-semibold"> <i class="fa-solid fa-building-user"></i> Colone : ELI </p>
+                                    <p class="card-text text-capitalize fw-semibold"> <i class="fa-solid fa-building-user"></i> Departement : Ghestemané</p>
+                                    <p class="card-text fw-semibold"> <i class="fa-solid fa-mobile-screen-button"></i> {{ session('membre')->telephone }}</p>
+                                    <p class="card-text text-capitalize fst-italic"><small class="text-muted"><i class="fa-solid fa-map-location-dot"></i> {{ session('membre')->quartier }}</small></p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div> -->
                 </div>
 
             </div>
